@@ -20,3 +20,4 @@ It's designed for Unity3d games, but it's not using any of the Unity components,
 * More interfaces to be able to customize more components
 * Battle manager, to encapsulate all the different components (characters, modifier cycle manager, battle log, etc) and create an easier integration process
 * Review state machine as this is a very simple implementation
+* In-code documentation
