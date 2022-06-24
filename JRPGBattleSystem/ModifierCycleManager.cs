@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Mail;
 
 namespace JRPGBattleSystem
 {
@@ -68,9 +67,14 @@ namespace JRPGBattleSystem
 
         public TriggerResult Trigger(ModifierTrigger trigger)
         {
-            var toApply = modifierDataList.FindAll(data => data.Modifier.ApplyTrigger == trigger);
+            return Trigger(trigger, null);
+        }
+
+        public TriggerResult Trigger(ModifierTrigger trigger, Character targetCharacter)
+        {
+            var toApply = modifierDataList.FindAll(data => data.Modifier.ApplyTrigger == trigger && (targetCharacter == null || targetCharacter == data.Character));
             toApply.ForEach(data => ApplyModifier(data));
-            var toRemove = modifierDataList.FindAll(data => data.Modifier.RemoveTrigger == trigger);
+            var toRemove = modifierDataList.FindAll(data => data.Modifier.RemoveTrigger == trigger && (targetCharacter == null || targetCharacter == data.Character));
             toRemove.ForEach(data => RemoveModifier(data));
             return new TriggerResult(toApply, toRemove);
         }

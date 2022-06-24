@@ -18,7 +18,7 @@ namespace Tests
 
         private class TestBattleStateMachine : BattleStateMachine<TestBattleStates>
         {
-            public override IBattleState CreateState(TestBattleStates state)
+            public IBattleState CreateState(TestBattleStates state)
             {
                 IBattleState newState = null;
                 switch (state)
@@ -110,9 +110,9 @@ namespace Tests
         }
 
         [Test]
-        public void ShouldInitializeWithFirstState()
+        public void ShouldInitializeWithNullState()
         {
-            Assert.AreEqual(TestBattleStates.Initial, stateMachine.CurrentState.GetEnum());
+            Assert.IsNull(stateMachine.CurrentState);
         }
 
         [Test]
@@ -128,19 +128,28 @@ namespace Tests
         {
             var state = stateMachine.CreateState(TestBattleStates.Second);
             stateMachine.ChangeState(state);
+            stateMachine.Update();
             Assert.AreEqual(TestBattleStates.Second, stateMachine.CurrentState.GetEnum());
         }
 
         [Test]
         public void ShouldFailIfStateIsNull()
         {
-            Assert.Throws<Exception>(() => stateMachine.ChangeState(null));
+            Assert.Throws<Exception>(() =>
+            {
+                stateMachine.ChangeState(null);
+                stateMachine.Update();
+            });
         }
 
         [Test]
         public void ShouldFailIfWrongState()
         {
-            Assert.Throws<Exception>(() => stateMachine.ChangeState(new WrongState()));
+            Assert.Throws<Exception>(() =>
+            {
+                stateMachine.ChangeState(new WrongState());
+                stateMachine.Update();
+            });
         }
     }
 }

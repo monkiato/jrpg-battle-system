@@ -7,7 +7,7 @@ namespace Tests
     {
         private int increaseValue;
 
-        public IncreaseSTRModifier(int increaseValue) : base(CharacterStatModifierType.IncreaseSTR, ModifierTrigger.None, ModifierTrigger.CharacterAttackEnds)
+        public IncreaseSTRModifier(int increaseValue) : base(CharacterStatModifierType.IncreaseSTR, ModifierTarget.Own, ModifierTrigger.None, ModifierTrigger.CharacterAttackEnds)
         {
             this.increaseValue = increaseValue;
         }
@@ -27,7 +27,7 @@ namespace Tests
     {
         private int decreaseValue;
 
-        public DecreaseRESNextTurnModifier(int decreaseValue) : base(CharacterStatModifierType.DecreaseRES, ModifierTrigger.TurnStarts, ModifierTrigger.TurnEnds)
+        public DecreaseRESNextTurnModifier(int decreaseValue) : base(CharacterStatModifierType.DecreaseRES, ModifierTarget.Opponent, ModifierTrigger.TurnStarts, ModifierTrigger.TurnEnds)
         {
             this.decreaseValue = decreaseValue;
         }

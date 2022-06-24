@@ -1,22 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace JRPGBattleSystem
 {
     /// <summary>
     /// Expected Enum with the different states
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class BattleStateMachine<T> where T : Enum
+    /// <typeparam name="T">Enum with the different battle states</typeparam>
+    public class BattleStateMachine<T> where T : Enum
     {
         public IBattleState CurrentState { get; private set; }
 
-        public BattleStateMachine(bool autoInitialize = true)
-        {
-            if (autoInitialize) ChangeState(CreateState(default));
-        }
+        public event Action<IBattleState> OnStateChange;
 
-        public abstract IBattleState CreateState(T state);
+        private Queue<ChangeStateRequest> pendingStateChanges = new Queue<ChangeStateRequest>();
 
         public void ChangeState(IBattleState newState)
+        {
+            pendingStateChanges.Enqueue(new ChangeStateRequest(newState));
+        }
+
+        public void Update()
+        {
+            CheckPendingStateChanges();
+        }
+
+        private void CheckPendingStateChanges()
+        {
+            if (pendingStateChanges.Count > 0)
+            {
+                var request = pendingStateChanges.Dequeue();
+                ExecuteChangeState(request.NewState);
+            }
+        }
+
+        public void ExecuteChangeState(IBattleState newState)
         {
             if (newState == null) throw new Exception("Received null state");
             if (newState.GetEnum().GetType() != typeof(T)) throw new Exception("Invalid state received, using a wrong enum type");
@@ -27,15 +45,17 @@ namespace JRPGBattleSystem
             }
             CurrentState = newState;
             CurrentState.Start();
+            OnStateChange?.Invoke(newState);
         }
-    }
 
-    public interface IBattleState
-    {
-        void Start();
+        private class ChangeStateRequest
+        {
+            internal readonly IBattleState NewState;
 
-        void Stop();
-
-        Enum GetEnum();
+            public ChangeStateRequest(IBattleState newState)
+            {
+                this.NewState = newState;
+            }
+        }
     }
 }

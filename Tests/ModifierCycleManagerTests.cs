@@ -15,7 +15,7 @@ namespace Tests
         public void SetUp()
         {
             character = new Character(new CharacterStats(100, 10, 20, 30));
-            stateModifier = new StateModifier(CharacterStates.Bleeding, ModifierTrigger.TurnStarts, ModifierTrigger.TurnEnds);
+            stateModifier = new StateModifier(CharacterStates.Bleeding, ModifierTarget.Opponent, ModifierTrigger.TurnStarts, ModifierTrigger.TurnEnds);
             statsModifier = new IncreaseSTRModifier(5);
             manager = new ModifierCycleManager();
         }
@@ -32,7 +32,7 @@ namespace Tests
         [Test]
         public void ShouldApplyStateDirectlyIfTriggerNone()
         {
-            stateModifier = new StateModifier(CharacterStates.Bleeding, ModifierTrigger.None, ModifierTrigger.TurnEnds);
+            stateModifier = new StateModifier(CharacterStates.Bleeding, ModifierTarget.Opponent, ModifierTrigger.None, ModifierTrigger.TurnEnds);
             Assert.False(character.HasState(CharacterStates.Bleeding));
             manager.Register(stateModifier, character);
             Assert.True(character.HasState(CharacterStates.Bleeding));
@@ -51,7 +51,7 @@ namespace Tests
         [Test]
         public void ShouldUseEndTriggerForState()
         {
-            stateModifier = new StateModifier(CharacterStates.Bleeding, ModifierTrigger.None, ModifierTrigger.TurnEnds);
+            stateModifier = new StateModifier(CharacterStates.Bleeding, ModifierTarget.Opponent, ModifierTrigger.None, ModifierTrigger.TurnEnds);
             manager.Register(stateModifier, character);
             Assert.True(character.HasState(CharacterStates.Bleeding));
             manager.Trigger(ModifierTrigger.TurnEnds);

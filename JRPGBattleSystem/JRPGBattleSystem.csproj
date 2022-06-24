@@ -30,7 +30,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BattleLogEntry.cs" />
     <Compile Include="BattleLog.cs" />
     <Compile Include="BattleStateMachine.cs" />
@@ -44,6 +43,10 @@
     <Compile Include="ModifierTrigger.cs" />
     <Compile Include="BaseModifier.cs" />
     <Compile Include="IModifier.cs" />
+    <Compile Include="IBattleState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

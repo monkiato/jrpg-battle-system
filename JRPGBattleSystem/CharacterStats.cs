@@ -11,8 +11,6 @@ namespace JRPGBattleSystem
         private CharacterSingleStat res;
         private CharacterSingleStat dex;
 
-        public int MaxHP { get; private set; }
-
         public CharacterSingleStat HP => UpdateSingleStatModifiers(hp, CharacterStatType.HP);
         public CharacterSingleStat STR => UpdateSingleStatModifiers(str, CharacterStatType.STR);
         public CharacterSingleStat RES => UpdateSingleStatModifiers(res, CharacterStatType.RES);

@@ -35,7 +35,7 @@ namespace Tests
         [Test]
         public void ShouldApplyValidStateModifier()
         {
-            StateModifier modifier = new StateModifier(CharacterStates.Stun, ModifierTrigger.None, ModifierTrigger.TurnEnds);
+            StateModifier modifier = new StateModifier(CharacterStates.Stun, ModifierTarget.Opponent, ModifierTrigger.None, ModifierTrigger.TurnEnds);
             character.ApplyModifier(modifier);
             var modifiers = character.Modifiers;
             Assert.AreEqual(1, modifiers.Count);
@@ -45,7 +45,7 @@ namespace Tests
         [Test]
         public void ShouldCleanModifier()
         {
-            StateModifier modifier = new StateModifier(CharacterStates.Stun, ModifierTrigger.None, ModifierTrigger.TurnEnds);
+            StateModifier modifier = new StateModifier(CharacterStates.Stun, ModifierTarget.Opponent, ModifierTrigger.None, ModifierTrigger.TurnEnds);
             character.ApplyModifier(modifier);
             var modifiers = character.Modifiers;
             Assert.AreEqual(1, modifiers.Count);
@@ -56,7 +56,7 @@ namespace Tests
         [Test]
         public void ShouldHaveSpecialState()
         {
-            StateModifier modifier = new StateModifier(CharacterStates.Stun, ModifierTrigger.None, ModifierTrigger.TurnEnds);
+            StateModifier modifier = new StateModifier(CharacterStates.Stun, ModifierTarget.Opponent, ModifierTrigger.None, ModifierTrigger.TurnEnds);
             Assert.False(character.HasState(CharacterStates.Stun));
             character.ApplyModifier(modifier);
             Assert.True(character.HasState(CharacterStates.Stun));

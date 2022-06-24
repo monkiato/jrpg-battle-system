@@ -6,7 +6,7 @@ namespace JRPGBattleSystem
 {
     public class Character
     {
-        public CharacterStats Stats { get; }
+        public CharacterStats Stats { get; private set; }
 
         public List<StateModifier> Modifiers { get; } = new List<StateModifier>();
 
@@ -28,6 +28,11 @@ namespace JRPGBattleSystem
         public bool HasState(Enum state)
         {
             return Modifiers.Any(modifier => state.CompareTo(modifier.ModifierType) == 0);
+        }
+
+        public void UpdateStats(CharacterStats newStats)
+        {
+            Stats = newStats;
         }
     }
 }

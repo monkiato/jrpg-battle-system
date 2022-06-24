@@ -5,8 +5,8 @@ namespace JRPGBattleSystem
     {
         protected CharacterStats Stats { get; private set; }
 
-        public StatsModifier(Enum type, ModifierTrigger applyTrigger, ModifierTrigger removeTrigger) :
-            base(type, applyTrigger, removeTrigger)
+        public StatsModifier(Enum type, ModifierTarget target, ModifierTrigger applyTrigger, ModifierTrigger removeTrigger) :
+            base(type, target, applyTrigger, removeTrigger)
         {
         }
 
