@@ -1,4 +1,4 @@
-﻿namespace JRPGBattleSystem
+﻿namespace JRPGBattleSystem.Player
 {
     public enum CharacterStatType
     {

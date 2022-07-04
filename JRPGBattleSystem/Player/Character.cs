@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JRPGBattleSystem.Modifier;
 
-namespace JRPGBattleSystem
+namespace JRPGBattleSystem.Player
 {
     public class Character
     {

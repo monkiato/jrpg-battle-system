@@ -32,13 +32,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
     <Compile Include="BattleStateMachineTests.cs" />
-    <Compile Include="BattleLogTests.cs" />
-    <Compile Include="CharacterTests.cs" />
-    <Compile Include="CharacterSingleStatTests.cs" />
-    <Compile Include="ModifierCycleManagerTests.cs" />
     <Compile Include="HelperClasses.cs" />
+    <Compile Include="Log\BattleLogTests.cs" />
+    <Compile Include="Player\CharacterSingleStatTests.cs" />
+    <Compile Include="Player\CharacterTests.cs" />
+    <Compile Include="Modifier\ModifierCycleManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -47,6 +46,11 @@
     <ProjectReference Include="..\JRPGBattleSystem\JRPGBattleSystem.csproj">
       <Name>JRPGBattleSystem</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Log\" />
+    <Folder Include="Modifier\" />
+    <Folder Include="Player\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

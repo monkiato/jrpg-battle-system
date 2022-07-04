@@ -13,7 +13,7 @@ namespace JRPGBattleSystem
 
         public event Action<IBattleState> OnStateChange;
 
-        private Queue<ChangeStateRequest> pendingStateChanges = new Queue<ChangeStateRequest>();
+        private readonly Queue<ChangeStateRequest> pendingStateChanges = new Queue<ChangeStateRequest>();
 
         public void ChangeState(IBattleState newState)
         {
@@ -29,15 +29,22 @@ namespace JRPGBattleSystem
         {
             if (pendingStateChanges.Count > 0)
             {
-                var request = pendingStateChanges.Dequeue();
+                ChangeStateRequest request = pendingStateChanges.Dequeue();
                 ExecuteChangeState(request.NewState);
             }
         }
 
         public void ExecuteChangeState(IBattleState newState)
         {
-            if (newState == null) throw new Exception("Received null state");
-            if (newState.GetEnum().GetType() != typeof(T)) throw new Exception("Invalid state received, using a wrong enum type");
+            if (newState == null)
+            {
+                throw new Exception("Received null state");
+            }
+
+            if (newState.GetEnum().GetType() != typeof(T))
+            {
+                throw new Exception("Invalid state received, using a wrong enum type");
+            }
 
             if (CurrentState != null)
             {
@@ -54,7 +61,7 @@ namespace JRPGBattleSystem
 
             public ChangeStateRequest(IBattleState newState)
             {
-                this.NewState = newState;
+                NewState = newState;
             }
         }
     }

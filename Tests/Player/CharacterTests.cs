@@ -1,5 +1,5 @@
-﻿using System;
-using JRPGBattleSystem;
+﻿using JRPGBattleSystem.Player;
+using JRPGBattleSystem.Modifier;
 using NUnit.Framework;
 
 namespace Tests
@@ -60,6 +60,18 @@ namespace Tests
             Assert.False(character.HasState(CharacterStates.Stun));
             character.ApplyModifier(modifier);
             Assert.True(character.HasState(CharacterStates.Stun));
+        }
+
+        [Test]
+        public void ShouldGetListOfStates()
+        {
+            StateModifier modifier1 = new StateModifier(CharacterStates.Stun, ModifierTarget.Opponent, ModifierTrigger.None, ModifierTrigger.TurnEnds);
+            StateModifier modifier2 = new StateModifier(CharacterStates.Bleeding, ModifierTarget.Opponent, ModifierTrigger.None, ModifierTrigger.TurnEnds);
+            character.ApplyModifier(modifier1);
+            character.ApplyModifier(modifier2);
+            var modifiers = character.Modifiers;
+            Assert.NotNull(modifiers);
+            Assert.AreEqual(2, modifiers.Count);
         }
 
         [Test]

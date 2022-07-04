@@ -1,4 +1,4 @@
-﻿namespace JRPGBattleSystem
+﻿namespace JRPGBattleSystem.Modifier
 {
     public enum ModifierTrigger
     {

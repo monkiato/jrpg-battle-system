@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using JRPGBattleSystem.Modifier;
 
-namespace JRPGBattleSystem
+namespace JRPGBattleSystem.Player
 {
     public class CharacterStats
     {
-        private CharacterSingleStat hp;
-        private CharacterSingleStat str;
-        private CharacterSingleStat res;
-        private CharacterSingleStat dex;
+        private readonly CharacterSingleStat hp;
+        private readonly CharacterSingleStat str;
+        private readonly CharacterSingleStat res;
+        private readonly CharacterSingleStat dex;
 
         public CharacterSingleStat HP => UpdateSingleStatModifiers(hp, CharacterStatType.HP);
         public CharacterSingleStat STR => UpdateSingleStatModifiers(str, CharacterStatType.STR);
@@ -40,9 +40,9 @@ namespace JRPGBattleSystem
 
         private CharacterSingleStat UpdateSingleStatModifiers(CharacterSingleStat stat, CharacterStatType type)
         {
-            var modifiersValue = Modifiers
-                .FindAll(modifier => modifier.CanModifyStatType(type))
-                .Sum(modifier => modifier.GetModifierValue(type));
+            int modifiersValue = Modifiers
+                            .FindAll(modifier => modifier.CanModifyStatType(type))
+                            .Sum(modifier => modifier.GetModifierValue(type));
             stat.Modifier = modifiersValue;
             return stat;
         }

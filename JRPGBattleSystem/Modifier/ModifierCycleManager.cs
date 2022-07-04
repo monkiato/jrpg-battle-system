@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using JRPGBattleSystem.Player;
 
-namespace JRPGBattleSystem
+namespace JRPGBattleSystem.Modifier
 {
     public class ModifierCycleManager
     {
@@ -11,7 +12,7 @@ namespace JRPGBattleSystem
         {
         }
 
-        public List<IModifier> AllModifiers => modifierDataList.ConvertAll<IModifier>(data => data.Modifier);
+        public List<IModifier> AllModifiers => modifierDataList.ConvertAll(data => data.Modifier);
 
         public void Register(IModifier modifier, Character character)
         {
@@ -72,9 +73,9 @@ namespace JRPGBattleSystem
 
         public TriggerResult Trigger(ModifierTrigger trigger, Character targetCharacter)
         {
-            var toApply = modifierDataList.FindAll(data => data.Modifier.ApplyTrigger == trigger && (targetCharacter == null || targetCharacter == data.Character));
+            List<ModifierData> toApply = modifierDataList.FindAll(data => data.Modifier.ApplyTrigger == trigger && (targetCharacter == null || targetCharacter == data.Character));
             toApply.ForEach(data => ApplyModifier(data));
-            var toRemove = modifierDataList.FindAll(data => data.Modifier.RemoveTrigger == trigger && (targetCharacter == null || targetCharacter == data.Character));
+            List<ModifierData> toRemove = modifierDataList.FindAll(data => data.Modifier.RemoveTrigger == trigger && (targetCharacter == null || targetCharacter == data.Character));
             toRemove.ForEach(data => RemoveModifier(data));
             return new TriggerResult(toApply, toRemove);
         }

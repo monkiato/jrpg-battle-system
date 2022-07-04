@@ -30,23 +30,25 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleLogEntry.cs" />
-    <Compile Include="BattleLog.cs" />
     <Compile Include="BattleStateMachine.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="CharacterStats.cs" />
-    <Compile Include="StatsModifier.cs" />
-    <Compile Include="StateModifier.cs" />
-    <Compile Include="ModifierCycleManager.cs" />
-    <Compile Include="CharacterSingleStat.cs" />
-    <Compile Include="CharacterStatType.cs" />
-    <Compile Include="ModifierTrigger.cs" />
-    <Compile Include="BaseModifier.cs" />
-    <Compile Include="IModifier.cs" />
     <Compile Include="IBattleState.cs" />
+    <Compile Include="Log\BattleLog.cs" />
+    <Compile Include="Log\BattleLogEntry.cs" />
+    <Compile Include="Modifier\BaseModifier.cs" />
+    <Compile Include="Modifier\ModifierCycleManager.cs" />
+    <Compile Include="Modifier\ModifierTrigger.cs" />
+    <Compile Include="Modifier\StateModifier.cs" />
+    <Compile Include="Modifier\StatsModifier.cs" />
+    <Compile Include="Modifier\IModifier.cs" />
+    <Compile Include="Player\CharacterSingleStat.cs" />
+    <Compile Include="Player\CharacterStatType.cs" />
+    <Compile Include="Player\CharacterStats.cs" />
+    <Compile Include="Player\Character.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Modifier\" />
+    <Folder Include="Log\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

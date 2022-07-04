@@ -1,5 +1,7 @@
 ﻿using System;
-namespace JRPGBattleSystem
+using JRPGBattleSystem.Player;
+
+namespace JRPGBattleSystem.Modifier
 {
     public abstract class StatsModifier : BaseModifier
     {
@@ -20,7 +22,11 @@ namespace JRPGBattleSystem
 
         public void Remove()
         {
-            if (Stats == null) throw new Exception("Stats owner wasn't assigned");
+            if (Stats == null)
+            {
+                throw new Exception("Stats owner wasn't assigned");
+            }
+
             Stats.RemoveModifier(this);
         }
     }

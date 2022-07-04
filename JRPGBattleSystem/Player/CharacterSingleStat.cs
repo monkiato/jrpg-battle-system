@@ -1,17 +1,11 @@
 ﻿using System;
 
-namespace JRPGBattleSystem
+namespace JRPGBattleSystem.Player
 {
     public class CharacterSingleStat
     {
         public int MaxValue { get; private set; }
-        public int Value
-        {
-            get
-            {
-                return Math.Min(MaxValue, NetValue + Modifier);
-            }
-        }
+        public int Value => Math.Min(MaxValue, NetValue + Modifier);
         public int NetValue { get; private set; }
         public int Modifier { get; set; }
 

@@ -1,5 +1,5 @@
-﻿using System;
-using JRPGBattleSystem;
+﻿using JRPGBattleSystem.Modifier;
+using JRPGBattleSystem.Player;
 using NUnit.Framework;
 
 namespace Tests

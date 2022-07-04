@@ -1,5 +1,5 @@
 ﻿using System;
-namespace JRPGBattleSystem
+namespace JRPGBattleSystem.Modifier
 {
     public class StateModifier : BaseModifier
     {
