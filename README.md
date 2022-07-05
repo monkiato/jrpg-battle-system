@@ -4,6 +4,10 @@
 
 It's designed for Unity3d games, but it's not using any of the Unity components, and it doesn't provide any UI related logic, the tools are exclusively created for the battle system logic.
 
+## Documentation
+
+Go to [DOCUMENTATION.md](DOCUMENTATION.md)
+
 ## Available components
 
 * Character
