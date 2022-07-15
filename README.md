@@ -10,6 +10,8 @@ Unity packages are available in the *Github Releases* section
 
 https://github.com/monkiato/jrpg-battle-system/releases
 
+~~ Package generated through the [Unity Packager](https://github.com/monkiato/unity-packager) tool ~~
+
 ## Documentation
 
 Go to [DOCUMENTATION.md](DOCUMENTATION.md)
