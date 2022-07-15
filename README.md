@@ -4,6 +4,12 @@
 
 It's designed for Unity3d games, but it's not using any of the Unity components, and it doesn't provide any UI related logic, the tools are exclusively created for the battle system logic.
 
+## Download Unity Package
+
+Unity packages are available in the *Github Releases* section
+
+https://github.com/monkiato/jrpg-battle-system/releases
+
 ## Documentation
 
 Go to [DOCUMENTATION.md](DOCUMENTATION.md)
