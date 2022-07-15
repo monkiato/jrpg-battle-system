@@ -1,0 +1,21 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: create unity package
+  image: alpine:latest
+  commands:
+  - /drone/src/build-tools/unity-packager/unity-packager-linux-amd64 create -p JRPGBattleSystem -o jrpg-battle-system -i ".csproj" --add-assets-folder
+
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: publish_api_key
+    files: jrpg-battle-system.unitypackage
+
+trigger:
+  ref:
+    - refs/tags/*
