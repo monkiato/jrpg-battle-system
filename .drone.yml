@@ -5,9 +5,9 @@ name: default
 
 steps:
 - name: create unity package
-  image: alpine:latest
+  image: ghcr.io/monkiato/unity-packager:1.0.1
   commands:
-  - /drone/src/build-tools/unity-packager/unity-packager-linux-amd64 create -p JRPGBattleSystem -o jrpg-battle-system -i ".csproj" --add-assets-folder
+  - unity-packager create -p JRPGBattleSystem -o jrpg-battle-system -i ".csproj" --add-assets-folder
 
 - name: publish
   image: plugins/github-release
